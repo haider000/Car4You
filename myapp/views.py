@@ -1,12 +1,20 @@
 from django.shortcuts import render
 from .models import User,Car
 # Create your views here.
+
+
 def index(request):
     return render(request,'index.html')
+
+
 def about(request):
     return render(request,'about.html')
+
+
 def signupform(request):
     return render(request,'signup.html')
+
+
 def signup(request):
     username=request.POST['username']
     useremail = request.POST['useremail']
@@ -14,11 +22,13 @@ def signup(request):
     usermobile = request.POST['usermobile']
     u=User.objects.filter(user_email=useremail)
     if(u.count()==1):
-        return render(request, 'signup.html', {'msg': 'Email Id Already Exist..'})
+        return render(request, 'signup.html', {'already_exist': 'Email Id Already Exist..'})
     else:
         u=User(user_name=username,user_email=useremail,user_password=userpassword,user_mobile=usermobile)
         res=u.save()
-        return render(request,'signup.html',{'success':'Signup Done..'})
+        return render(request,'index.html',{'signup_success':'Signup Done..'})
+
+
 def login(request):
     useremail = request.POST['loginname']
     userpassword = request.POST['loginpassword']
@@ -41,33 +51,10 @@ def login(request):
             return render(request, 'index.html', {'msg': 'Invalid Email Id or Password'})
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def lostpwd(request):
     return render(request,'lostpwd.html')
+
+
 def getpassword(request):
     useremail = request.POST['email']
     u = User.objects.filter(user_email=useremail)
@@ -75,8 +62,12 @@ def getpassword(request):
         return render(request,'lostpwd.html',{'msg':u})
     else:
         return render(request, 'lostpwd.html',{'msg1':'Invalid Email Id'})
+
+
 def updateuserdetails(request):
     return render(request,'update_user_details.html')
+
+
 def update_user_db(request):
     username=request.POST['username']
     userpassword = request.POST['userpassword']
@@ -91,10 +82,16 @@ def update_user_db(request):
     request.session['user_password']=userpassword
     request.session['user_mobile']=usermobile
     return render(request,'update_user_details.html',{'msg':'Record Updated'})
+
+
 def back_user(request):
     return render(request,'welcome_user.html')
+
+
 def registercar(request):
     return render(request,'register_car.html')
+
+
 def register_car_db(request):
     carnumber=request.POST['CarNumber']
     carmodel = request.POST['Model']
@@ -121,8 +118,11 @@ def register_car_db(request):
         request.session['car_rettime']=carretn
         return render(request,'register_car.html',{'success':'Car Registered..'})
         	
+
 def update_car_details(request):
     return render(request,'update_car.html')	
+
+
 def update_car_db(request):
     carnumber=request.POST['CarNumber']
     carmodel = request.POST['Model']
@@ -149,11 +149,15 @@ def update_car_db(request):
     request.session['car_dept']=cardept
     request.session['car_rettime']=carretn
     return render(request,'update_car.html',{'success':'Car Updated..'})
+
+
 def deleteaccount(request):
     useremail = request.session['user_email']
     u = User.objects.get(user_email=useremail)
     u.delete()
     return render(request,'delete_feedback.html')
+
+
 def search(request):
     src = request.POST['src']
     dst = request.POST['dst']
