@@ -68,7 +68,8 @@
    
    <tr>
 	<td><label><b>Mobile Number:</b></label></td>
-	<td><input type="number" name="usermobile" value="{{request.session.user_mobile}}" required></td>
+	<td><input  type="tel"
+    pattern="[1-9]{1}[0-9]{9}" name="usermobile" value="{{request.session.user_mobile}}" required></td>
    </tr>
    
    <tr>

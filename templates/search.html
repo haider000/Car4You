@@ -1,14 +1,44 @@
 <!doctype html>
 <html lang="en">
+  <style>#tbl{
+    width: fit-content;
+    height: 500px;
+margin-top: 40px;
+    background-color: aliceblue;
+    opacity: 0.8;
+
+    border-radius: 15px;
+    /* background-color: #fff; */
+    box-shadow: 0 0 20px #0003;
+    /* height: 100%; */
+    border-radius: 18px;
+    
+    padding: 60px 60px;
+  
+    max-height: 100%;
+  }</style>
   <body>
    {% include 'header.html' %}
  <div align="center">
+   <div id="tbl">
  <table cellpadding=10>
+  
  <thead>
+   <tr><th
+    colspan="8"
+    style="
+      color: orange;
+      font-weight: bolder;
+      padding-left: 240px;
+    "
+  > <h1>Available Cars</h1> </th></tr>
+
+  <tr>
  <th>Model</th><th>Dept Date</th><th>Dept Time</th><th>Return Time</th>
  <th>Source</th><th>Dest</th>
- <th>Email</th><th>Mobile</th>
+ <th>Email</th><th>Mobile</th></tr>
  </thead>
+ 
     {% for car in cars %}
         <tr>
 		<td>{{car.car_model }}</td>
