@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import User,Car
+
 # Create your views here.
 
 
@@ -9,6 +10,9 @@ def index(request):
 
 def about(request):
     return render(request,'about.html')
+
+def contact(request):
+    return render(request,'contact.html')
 
 
 def signupform(request):
@@ -102,12 +106,16 @@ def register_car_db(request):
     cardest=cardest.lower()
     cardept = request.POST['DepartureTime']
     carretn = request.POST['ReturnTime']
+    carrentdate = request.POST['DepartureDate']
     useremail=request.session['user_email']
+    usermobile = request.session['user_mobile']
+   
+    
     car=Car.objects.filter(car_number=carnumber)
     if(car.count()==1):
         return render(request, 'register_car.html', {'msg': 'This Car Already Exist..'})
     else:
-        car=Car(car_number=carnumber,user_email=useremail,car_model=carmodel,car_seats=carseats,car_source=carsource,car_destination=cardest,car_depttime=cardept,car_retntime=carretn)
+        car=Car(car_number=carnumber,user_email=useremail,user_mobile=usermobile,car_model=carmodel,car_seats=carseats,car_source=carsource,car_destination=cardest,car_depttime=cardept,car_retntime=carretn,car_rentdate=carrentdate)
         car.save()
         request.session['car_number']=carnumber
         request.session['car_model']=carmodel
@@ -116,6 +124,7 @@ def register_car_db(request):
         request.session['car_dest']=cardest
         request.session['car_dept']=cardept
         request.session['car_rettime']=carretn
+        request.session['car_rentdate'] = carrentdate
         return render(request,'register_car.html',{'success':'Car Registered..'})
         	
 
@@ -131,6 +140,7 @@ def update_car_db(request):
     cardest = request.POST['Destination']
     cardept = request.POST['DepartureTime']
     carretn = request.POST['ReturnTime']
+    carrentdate = request.POST['DepartureDate']
     useremail=request.session['user_email']
     car=Car.objects.get(car_number=carnumber)
     car.car_number=carnumber
@@ -140,6 +150,7 @@ def update_car_db(request):
     car.car_destination=cardest
     car.car_depttime=cardept
     car.car_retntime=carretn
+    car.car_rentdate = carrentdate
     car.save()
     request.session['car_number']=carnumber
     request.session['car_model']=carmodel
@@ -148,6 +159,7 @@ def update_car_db(request):
     request.session['car_dest']=cardest
     request.session['car_dept']=cardept
     request.session['car_rettime']=carretn
+    request.session['car_rentdate'] = carrentdate
     return render(request,'update_car.html',{'success':'Car Updated..'})
 
 
@@ -164,4 +176,5 @@ def search(request):
     src=src.lower()
     dst=dst.lower()
     cars=Car.objects.filter(car_source=src,car_destination=dst)
+    print(cars)
     return render(request,'search.html',{'cars':cars})

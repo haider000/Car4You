@@ -4,9 +4,9 @@
 <body>
     {% include 'header.html' %}
 
-    <div align='center'>
-        <label><b><font color='red'>{{ already_exist }}</font><b></label>
-        <label><b><font color='green'>{{ signup_success}}</font><b></label>
+    <div align='center' style="margin-top: 8px; margin-bottom: 10px;"> 
+        <h1><b><font color='red'>{{ already_exist }}</font><b></h1>
+        <h1><b><font color='green'>{{ signup_success}}</font><b></h1>
 
         <form action="/signup/" method="post">
             {% csrf_token %}

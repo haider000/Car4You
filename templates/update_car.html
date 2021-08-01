@@ -22,12 +22,20 @@
 </head>
   <body style="background-color: aliceblue">
    {% include 'header_login.html' %}
-   Welcome, 
-         <font color="green">{{request.session.user_name}}</font>
-     
-   <br>
-   <a href='/back_user'>Back</a>
-   
+   <div style="font-weight: bold; margin-left: 10px;">
+    <h4>
+      Welcome,
+      <font
+        color="#1a75ff"
+        style="font-size: 25px; font-family: Courier; font-weight: bolder;"
+      >
+        {{request.session.user_name}}
+      </font>
+    </h4>
+
+    <br />
+    <a href="/back_user">Previous Page</a>
+  </div>
 <div align="center">
    <label><b><font color='green'>{{ success }}</font><b></label>
     <form action="/update_car_db/" method="post">
@@ -61,6 +69,7 @@
 							 
 							</tr>
 							<tr>
+                                <td>Departure Date</td><td><input type="date" name="DepartureDate" required value="{{request.session.car_rentdate}}"/></td>
 									<td>Return Time</td><td><input type="text" name="ReturnTime" value="{{request.session.car_rettime}}" required/></td>
 							 
 							</tr>

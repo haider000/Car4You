@@ -22,12 +22,25 @@
 </head>
   <body>
    {% include 'header_login.html' %}
-   Welcome, 
-         <font color="green">{{request.session.user_name}}</font>
-     
-   <br>
-   <a href='/back_user'>Back</a>
-   <br>
+
+   <div style="font-weight: bold; margin-left: 10px;">
+    <h4>
+      Welcome,
+      <font
+        color="#1a75ff"
+        style="font-size: 25px; font-family: Courier; font-weight: bolder;"
+      >
+        {{request.session.user_name}}
+      </font>
+    </h4>
+
+    <br />
+    <a href="/back_user">Previous Page</a>
+  </div>
+
+
+   <div style="margin-top: 10%;">
+  
 <div align="center">
       <label style="position:absolute;left:450px;top:450px;"><b><font color='black'>{{ msg }}</font><b></label>
    
@@ -65,6 +78,7 @@
    </table>
         </div>
 </form>       
+</div>
 </div>
     {% include 'footer.html' %}
 

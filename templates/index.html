@@ -20,11 +20,19 @@
         #tbl_login {
             width: 400px;
             height: 400px;
-            position: absolute;
+           
             background-color: aliceblue;
             opacity: 0.8;
-            margin-left: 600px;
+           
             border-radius: 15px;
+            /* background-color: #fff; */
+                box-shadow: 0 0 20px #0003;
+                /* height: 100%; */
+                border-radius: 18px;
+                max-width: 800px;
+                padding: 60px 60px;
+                width: calc(100% - 100px);
+                max-height: 100%;
         }
         
         th,
@@ -49,16 +57,16 @@
     {% include 'header.html' %} {% include 'Caranimation.html' %}
 
 
-    <div align="center">
+    <div align="center" style="margin-bottom:100px; margin-top:3px ">
 
-        <label><b><font color='red'>{{ already_exist }}</font><b></label>
-        <label><b><font color='green'>{{ signup_success }}</font><b></label>
-        <label><b><font color='red'>{{ msg }}</font><b></label>
+        <h1><b><font color='red'>{{ already_exist }}</font><b></h1>
+        <h1><b><font color='green'>{{ signup_success }}</font><b></h1>
+        <h1><b><font color='red'>{{ msg }}</font><b></h1>
 
-
+<div >
         <form action="/login/" method="post">
             {% csrf_token %}
-            <div id="tbl_login">
+            <div id="tbl_login" >
                 <table cellpadding="10">
 
                     <tr>
@@ -89,8 +97,9 @@
                 </table>
             </div>
         </form>
-
     </div>
+    </div>
+    
     {% include 'footer.html' %}
 
 </body>

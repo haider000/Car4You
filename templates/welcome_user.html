@@ -1,51 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+      }
 
+      a {
+        font-family: Courier;
+        font-size: 22px;
+        font-weight: bolder;
+      }
+      a:hover {
+        font-size: 24px;
+        text-decoration: none;
+      }
 
-        a{
-
-            font-family: Courier;
-            font-size:22px;
-            font-weight: bolder;
-
-        }
-        a:hover{
-            font-size: 24px;
-            text-decoration: none;
-        }
-
-        body h4{
-            color: #1b1e21;
-        }
+      body h4 {
+        color: #1b1e21;
+      }
     </style>
-</head>
+  </head>
   <body>
+    {% include 'header_login.html' %}
+    <div style="font-weight: bold; margin-left: 10px;">
+      <h4>
+        Welcome,
+        <font
+          color="#1a75ff"
+          style="font-size: 25px; font-family: Courier; font-weight: bolder;"
+        >
+          {{request.session.user_name}}
+        </font>
+      </h4>
 
-
-   {% include 'header_login.html' %}
-   <h4>Welcome,</h4>
-         <font color="#1a75ff" style="font-size: 25px; font-family: Courier; font-weight: bolder;">{{request.session.user_name}}</font>
-     
-   <br>
-   <br>
-
-<div align="center">
-    <a href="/registercar">Get Your car Registered !</a>
-            <br><br>
-    <a href="/updateuserdetails">Update your details</a>
-            <br><br>
-    <a href="/updatecardetails">Update your car details</a>
-            <br><br>
-    <a href="/deleteaccount">Delete your account</a>
-            <br><br>
-</div>
+      <br />
+    </div>
+    <div align="center">
+      <a href="/registercar">Get Your car Registered !</a>
+      <br />
+      <br />
+      <a href="/updateuserdetails">Update your details</a>
+      <br />
+      <br />
+      <a href="/updatecardetails">Update your car details</a>
+      <br />
+      <br />
+      <a href="/deleteaccount">Delete your account</a>
+      <br />
+      <br />
+    </div>
     {% include 'footer.html' %}
-
-   </body>
+  </body>
 </html>

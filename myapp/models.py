@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 # Create your models here.
 class User(models.Model):
     user_name=models.CharField(max_length=50)
@@ -10,13 +11,14 @@ class User(models.Model):
 class Car(models.Model):
     car_number=models.CharField(max_length=50,primary_key=True)
     user_email=models.EmailField(max_length=50)
+    user_mobile=models.IntegerField(default=0000000000,blank=True)
     car_model=models.CharField(max_length=50)
     car_seats=models.IntegerField()
     car_source=models.CharField(max_length=50)
     car_destination=models.CharField(max_length=50)
     car_depttime=models.CharField(max_length=50)
     car_retntime=models.CharField(max_length=50)
-    
+    car_rentdate = models.DateField(default=date.today, blank=True)
     class Meta:
         db_table='user_car'
 
